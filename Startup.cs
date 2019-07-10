@@ -32,7 +32,7 @@ namespace CarBookingAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, CarDbContext carDbContext)
         {
             if (env.IsDevelopment())
             {
@@ -45,6 +45,9 @@ namespace CarBookingAPI
             }
 
             app.UseHttpsRedirection();
+
+            carDbContext.EnsureSeedDataForContext();
+
             app.UseMvc();
         }
     }
