@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CarBookingAPI.Entities;
 
 namespace CarBookingAPI.Services
@@ -17,9 +19,15 @@ namespace CarBookingAPI.Services
             _context.Bookings.Add(booking);
         }
 
-        public IEnumerable<Car> GetCars()
+        public IEnumerable<Car> GetAvailableCars()
         {
-            return _context.Cars;
+            var currentBookings = _context.Bookings.Where(b => b.EndDateTime > DateTime.Now);
+            return _context.Cars.Where(c => !currentBookings.Select(b => b.CarId).Contains(c.Id));
+        }
+
+        public bool Save()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

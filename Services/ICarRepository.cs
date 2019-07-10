@@ -6,6 +6,7 @@ namespace CarBookingAPI.Services
     public interface ICarRepository
     {
         void AddBooking(Booking booking);
-        IEnumerable<Car> GetCars();
+        IEnumerable<Car> GetAvailableCars();
+        bool Save();
     }
 }
