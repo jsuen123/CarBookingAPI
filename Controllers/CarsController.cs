@@ -45,7 +45,7 @@ namespace CarBookingAPI.Controllers
             if (!_carRepository.CarExists(carId))
                 return NotFound();
 
-            var isCarAvailable = _carRepository.CarAvailable(new Guid("626c2527-1828-47f6-92c7-17f3c5d51d82"));
+            var isCarAvailable = _carRepository.CarAvailable(carId);
 
             if (!isCarAvailable)
                 return BadRequest($"The car is not available.");
