@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.28917.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarBookingAPI", "CarBookingAPI.csproj", "{8918E3D2-C67D-4ED8-AEF6-40A5A5BBECB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarBookingAPI.UnitTests", "..\CarBookingAPI.UnitTests\CarBookingAPI.UnitTests.csproj", "{9B9873D4-CF43-4234-A432-063D778079B3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{8918E3D2-C67D-4ED8-AEF6-40A5A5BBECB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8918E3D2-C67D-4ED8-AEF6-40A5A5BBECB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8918E3D2-C67D-4ED8-AEF6-40A5A5BBECB4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B9873D4-CF43-4234-A432-063D778079B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B9873D4-CF43-4234-A432-063D778079B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B9873D4-CF43-4234-A432-063D778079B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B9873D4-CF43-4234-A432-063D778079B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
