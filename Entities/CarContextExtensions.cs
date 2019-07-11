@@ -8,6 +8,8 @@ namespace CarBookingAPI.Entities
         public static void EnsureSeedDataForContext(this CarDbContext context)
         {
             context.Cars.RemoveRange(context.Cars);
+            context.Persons.RemoveRange(context.Persons);
+            context.Bookings.RemoveRange(context.Bookings);
             context.SaveChanges();
 
             //Init Seed data
@@ -28,7 +30,7 @@ namespace CarBookingAPI.Entities
                     Make = "Honda",
                     Model = "Civic",
                     Registration = "ZZZ123",
-                    Year = 2019
+                    Year = 2018
                 },
 
                 new Car()
@@ -84,6 +86,32 @@ namespace CarBookingAPI.Entities
             };
 
             context.Persons.AddRange(person);
+            context.SaveChanges();
+
+            var booking = new List<Booking>()
+            {
+                //Active booking
+                new Booking()
+                {
+                    Id = new Guid("7b4eabcf-f72d-40fe-892d-e127f94f182f"),
+                    CarId = new Guid("4a483049-70cf-4ea0-ae09-70f1de11a48c"),
+                    StartDateTime = DateTime.Now,
+                    EndDateTime = DateTime.Now.AddDays(1),
+                    PersonId = new Guid("2fae2515-a301-4c71-a93f-24134882c5f5")
+                },
+
+                //Expired booking
+                new Booking()
+                {
+                    Id = new Guid("506c781f-ef7f-4c87-b2ea-814349575c3e"),
+                    CarId = new Guid("8413a612-f743-4d9e-9032-88b6a140930e"),
+                    StartDateTime = new DateTime(2019, 07, 01, 13, 00, 00),
+                    EndDateTime = new DateTime(2019, 07, 02, 13, 00, 00),
+                    PersonId = new Guid("d184b350-7379-4a35-9479-157bd0356219")
+                }
+            } ;
+
+            context.Bookings.AddRange(booking);
             context.SaveChanges();
         }
 

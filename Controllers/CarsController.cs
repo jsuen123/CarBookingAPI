@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using CarBookingAPI.Entities;
 using CarBookingAPI.Models;
@@ -12,7 +9,7 @@ namespace CarBookingAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class CarsController : Controller
     {
         private readonly ICarRepository _carRepository;
         private readonly IMapper _mapper;
@@ -28,7 +25,7 @@ namespace CarBookingAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<IEnumerable<CarDto>> Get()
+        public ActionResult<IEnumerable<CarDto>> GetCars()
         {
             var carsFromRepo = _carRepository.GetAvailableCars();
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CarBookingAPI.Entities;
 using CarBookingAPI.Mapping;
+using CarBookingAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,7 @@ namespace CarBookingAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<CarDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddScoped<ICarRepository, CarRepository>();
 
             // Auto Mapper Configurations
             var mappingConfig = new MapperConfiguration(mc =>
