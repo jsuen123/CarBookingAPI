@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using CarBookingAPI.Entities;
 using CarBookingAPI.Mapping;
 using CarBookingAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace CarBookingAPI
 {
@@ -42,6 +35,11 @@ namespace CarBookingAPI
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
+            //Cache Headers
+            services.AddHttpCacheHeaders();
+
+            //Caching
+            services.AddResponseCaching();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -59,9 +57,13 @@ namespace CarBookingAPI
             }
 
             app.UseHttpsRedirection();
-
             carDbContext.EnsureSeedDataForContext();
 
+            //Cache Headers
+            app.UseHttpCacheHeaders();
+
+            //Caching
+            app.UseResponseCaching();
             app.UseMvc();
         }
     }

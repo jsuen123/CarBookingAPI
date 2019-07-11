@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "a0091e71-e336-47de-9361-6e049c867b60",
+		"name": "Car Booking API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Available Cars",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:56738/api/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "56738",
+					"path": [
+						"api",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Booking",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"PersonId\" : \"e2daad18-32e9-4a6c-ab9b-332213932e86\",\n}"
+				},
+				"url": {
+					"raw": "http://localhost:56738/api/cars/626c2527-1828-47f6-92c7-17f3c5d51d82",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "56738",
+					"path": [
+						"api",
+						"cars",
+						"626c2527-1828-47f6-92c7-17f3c5d51d82"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "84c37112-27d0-4cc5-9332-b14f490ade2a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "98099279-3632-4ca4-b7af-dc313fda343b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

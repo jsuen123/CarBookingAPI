@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using CarBookingAPI.Entities;
 using CarBookingAPI.Models;
 
@@ -13,6 +9,8 @@ namespace CarBookingAPI.Mapping
         public MappingProfile()
         {
             CreateMap<Car, CarDto>();
+            CreateMap<BookingForCreationDto, Booking>();
+            CreateMap<BookingDto, Booking>().ReverseMap();
         }
     }
 }

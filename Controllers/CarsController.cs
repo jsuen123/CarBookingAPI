@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using CarBookingAPI.Entities;
 using CarBookingAPI.Models;
@@ -7,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarBookingAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class CarsController : Controller
     {
@@ -24,43 +24,62 @@ namespace CarBookingAPI.Controllers
         /// Get list of cars
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        public ActionResult<IEnumerable<CarDto>> GetCars()
+        [HttpGet("/api/cars")]
+        public IActionResult GetCars()
         {
             var carsFromRepo = _carRepository.GetAvailableCars();
 
             if (carsFromRepo == null)
+                return NotFound();
+
+            return Ok(_mapper.Map<IEnumerable<Car>, IEnumerable<CarDto>>(carsFromRepo));
+        }
+
+
+        [HttpPost("/api/cars/{carId}")]
+        public IActionResult CreateBooking(Guid carId, [FromBody] BookingForCreationDto booking)
+        {
+            if (booking == null)
+                return BadRequest();
+
+            if (!_carRepository.CarExists(carId))
+                return NotFound();
+
+            var isCarAvailable = _carRepository.CarAvailable(new Guid("626c2527-1828-47f6-92c7-17f3c5d51d82"));
+
+            if (!isCarAvailable)
+                return BadRequest($"The car is not available.");
+
+            var bookingEntity = _mapper.Map<Booking>(booking);
+            _carRepository.AddBooking(carId, bookingEntity);
+
+            if (!_carRepository.Save())
+                throw new Exception($"Creating a booking for car {carId} failed on save.");
+            
+            var bookingToReturn = _mapper.Map<BookingDto>(bookingEntity);
+
+            return CreatedAtRoute("GetBooking",
+                new { bookingId = bookingToReturn.Id },
+                bookingToReturn);
+        }
+
+        [HttpGet("/booking/{bookingId}", Name = "GetBooking")]
+        public IActionResult GetBooking(Guid bookingId)
+        {
+            if (!_carRepository.BookingExist(bookingId))
             {
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<IEnumerable<Car>, IEnumerable<CarDto>>(carsFromRepo));
+            var bookingFromRepo = _carRepository.GetBooking(bookingId);
 
-        }
+            if (bookingFromRepo == null)
+            {
+                return NotFound();
+            }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var booking = Mapper.Map<BookingDto>(bookingFromRepo);
+            return Ok(booking);
         }
     }
 }
