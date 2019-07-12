@@ -7,7 +7,7 @@ Steps to run:
     ii.	For Visual Studio 2019 – use “Download .NET Core SDK” link
 
 2.	Go to https://github.com/jsuen123/CarBookingAPI
-3.	Click on Cline or download, then Download ZIP
+3.	Click on Clone or download, then Download ZIP
 4.	Extract the zip file then run CarBookingAPI.sln
 5.	You can import the .json file using Postman in the “Postman Tests” folder, it contains the two requests for this exercise.
 
