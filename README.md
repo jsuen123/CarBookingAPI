@@ -1,6 +1,6 @@
 # CarBookingAPI
 
-Instruction
+Steps to run:
 1.	You will need to have Visual Studio 2017 or 2019 installed
   a.	You will need to download and install .NET Core 2.2 SDK from https://dotnet.microsoft.com/download - 
     i.	For Visual Studio 2017 – use “Download .NET Core SDK (Compatible with Visual Studio 2017)” link
@@ -11,7 +11,7 @@ Instruction
 4.	Extract the zip file then run CarBookingAPI.sln
 5.	You can import the .json file using Postman in the “Postman Tests” folder, it contains the two requests for this exercise.
 
-Assumptions of things if had more time
+Assumptions of things if had more time:
 -	User authorization - check if the user who requests the booking is the same as the logged-in user.
 -	Global exception handler – can be used for logging exceptions
 -	Implement HATEOAS – this will be useful if the client applications are in HATEOAS style and will make the API true RESTful.
