@@ -16,6 +16,6 @@ Assumptions of things if had more time:
 -	Global exception handler – can be used for logging exceptions
 -	Implement HATEOAS – this will be useful if the client applications are in HATEOAS style and will make the API true RESTful.
 -	Paging – improve performance if the car list gets larger
--	Unit testing – I had some issues with Microsoft.Test.Sdk, don’t know if it’s .NET Core 2.2 issue. So I did not get a change to create unit tests, but I would be happy to talk you through my unit test strategies.
+-	Unit testing – I had some issues with Microsoft.Test.Sdk, don’t know if it’s .NET Core 2.2 issue. So I did not get a chance to create unit tests, but I would be happy to talk you through my unit test strategies.
 -	Postman tests – automated test can be created in Postman to check if requests are responding. 
 -	Web API help page – can be done by using tools like Swagger 
