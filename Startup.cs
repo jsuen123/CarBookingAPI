@@ -23,6 +23,7 @@ namespace CarBookingAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            1
             services.AddDbContext<CarDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddScoped<ICarRepository, CarRepository>();
 
